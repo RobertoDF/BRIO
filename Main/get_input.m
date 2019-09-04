@@ -75,8 +75,8 @@ for ii=1:numel(list(:,1))
      list_cell{ii,5}=colorxID_rgb(IDs==list(ii,1),:);
 end
 
-hh=figure
-h=bar(1:length(list),list(:,2))
+hh=figure;
+h=bar(1:length(list),list(:,2));
 h.FaceColor = 'flat';
 h.CData =  cell2mat(list_cell(:,5));
 h.EdgeColor ='none';
