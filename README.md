@@ -1,5 +1,5 @@
 # BRIO
-BRain area Input Output visualization tool based on the Allen Brain Atlas projection database. It outputs a 3d reconstruction and a histogram.
+BRain area Input Output: visualization tool based on the Allen Brain Atlas projection database. It outputs a 3d reconstruction (circle size represents connectivity strenght) and a histogram.
 
 ## Requirements
 - MATLAB (R2018a on a Windows computer was used for all testing)
