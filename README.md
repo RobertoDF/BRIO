@@ -45,6 +45,6 @@ Connectivity strength is normalized by injection volume.
 Projection_density (sum of detected projection pixels / sum of all pixels in voxel) was used to determine connectivity strenght.
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-Thanks to [cortex-lab](https://github.com/cortex-lab) for providing such useful repositories for free!!!
+Thanks to [cortex-lab](https://github.com/cortex-lab) for providing such useful repositories!!!
 
-Code written by Roberto De Filippo
+
