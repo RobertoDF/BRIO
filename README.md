@@ -1,5 +1,5 @@
 # BRIO
-**BR**ain area **I**nput **O**utput: visualization tool based on the Allen Brain Atlas projection database. It outputs a 3d reconstruction (circle size represents connectivity strenght) and a histogram.
+**BR**ain area **I**nput **O**utput: visualization tool based on the Allen Brain Atlas connectivity database. It outputs a 3d reconstruction (circle size represents connectivity strenght) and a histogram.
 
 ## Requirements
 - MATLAB (R2018a on a Windows computer was used for all testing)
@@ -41,7 +41,7 @@ do a target search [here](http://connectivity.brain-map.org/) and then download 
 Injection located inside the area of interest are deleted automatically
 
 - - - - 
-Input is normalized by injection volume.
+Connectivity strength is normalized by injection volume.
 Projection_density (sum of detected projection pixels / sum of all pixels in voxel) was used to determine connectivity strenght.
 - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
