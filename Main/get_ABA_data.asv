@@ -63,7 +63,7 @@ if strcmp(type,'input')
        parsed_structures = unique(reshape(av(1:slice_spacing:end, ...
                 1:slice_spacing:end,1:slice_spacing:end),[],1));
              plot_structures_parsed = listdlg('PromptString','Select a structure to plot:', ...
-                'ListString',st.safe_name(parsed_structures),'ListSize',[520,500]);
+                'ListString',gui_data.st.safe_name(parsed_structures),'ListSize',[520,500]);
             plot_structures_index = parsed_structures(plot_structures_parsed);
       
 %       
