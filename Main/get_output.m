@@ -1,8 +1,8 @@
 function get_output(exp_id)
 % if you want to combine two injections you have to manually combine the
 % results in the next section and in this section you should  use this:
-[delete_this_annotations,levels_2_keep,selected_area,st,tv,av,...
-    colorxID_rgb,parent_ID,IDs,full_name,acronym,size_dots,plot_right_only]=get_ABA_data('input');
+% [delete_this_annotations,levels_2_keep,selected_area,st,tv,av,...
+%     colorxID_rgb,parent_ID,IDs,full_name,acronym,size_dots,plot_right_only]=get_ABA_data('input');
 
 [delete_this_annotations,levels_2_keep,selected_area,st,tv,av,...
     colorxID_rgb,parent_ID,IDs,full_name,acronym,size_dots,plot_right_only]=get_ABA_data('output',exp_id);
