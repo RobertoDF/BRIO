@@ -1,18 +1,9 @@
-function plot_3d_brain_with_connectivity(x,y,z,strenght_connection,selected_area,structure_ID,IDs,av,st,colorxID_rgb, plot_right_only)
-
-idx=ismember(st.id,selected_area);
-%use it to plot 3d
-selected_area_indexes=st.index(idx);
+function plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,size_dots)
 
 
-%delete areas that are indexed back to 0
-x(structure_ID==0)=[];
-y(structure_ID==0)=[];
-z(structure_ID==0)=[];
-strenght_connection(structure_ID==0)=[];
-structure_ID(structure_ID==0)=[];
 
-figure
+
+figure('Position',[2017          38        1737         911])
 bregma = allenCCFbregma();
 isBrain = av>1; % >0 for original av, >1 for by_index
 gridIn3D(double(isBrain), 0.5, 50, bregma);
@@ -24,26 +15,35 @@ axis off
 set(gcf,'color','w');
 hold on
 
-for ii=1:numel(x)
-    scatter3(x(ii),y(ii),z(ii),strenght_connection(ii) ...
-        ,colorxID_rgb(IDs==structure_ID(ii),:),'filled')
+
+
+
+for qqq=1:numel(result)
+    
+    
+    color =hex2rgb(result(qqq).hex);
+    
+    scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
+        result(qqq).normalized_projection_volume*size_dots ...
+        ,color,'filled')
 end
+
 
 %plot seed structure
 
  % Add structure(s) to display
         slice_spacing = 5;
 
-
-        for ii = 1:numel(selected_area_indexes)
+        for qqq = 1:numel(descendents_seed(:,1))
             
-            curr_plot_structure=selected_area_indexes(ii);
+            curr_plot_structure=descendents_seed.graph_order(qqq);
+            
             % If this label isn't used, don't plot
             if ~any(reshape(av( ...
                     1:slice_spacing:end,1:slice_spacing:end,1:slice_spacing:end),[],1) == curr_plot_structure)
-                    disp(['"' st.safe_name{st.index==curr_plot_structure} '" is not parsed in the atlas'])
+                    disp(['"' st.safe_name{st.graph_order==curr_plot_structure} '" is not parsed in the atlas'])
             else 
-                 disp(['"' st.safe_name{st.index==curr_plot_structure} '" plotted successfully'])
+                 disp(['"' st.safe_name{st.graph_order==curr_plot_structure} '" plotted successfully'])
               
             end
 
@@ -68,7 +68,22 @@ end
             structure_alpha = 0.2;
             patch('Vertices',structure_3d.vertices*slice_spacing, ...
                 'Faces',structure_3d.faces, ...
-                'FaceColor',[80/255 80/255 80/255],'EdgeColor','none','FaceAlpha',structure_alpha);
+                'FaceColor',[120/255 120/255 120/255],'EdgeColor','none','FaceAlpha',structure_alpha);
 %             
 
         end
+        
+        
+%         
+%         
+% figure('Position',[2017          38        1737         911])
+% 
+% hold on
+% scatter3(100,600,400,1000*size_dots, ...
+%      'MarkerFaceColor','w','MarkerEdgeColor','black')
+%   
+% scatter3(100,800,550,500*size_dots, ...
+%      'MarkerFaceColor','w','MarkerEdgeColor','black')
+% 
+% scatter3(100,1000,650,50*size_dots, ...
+%      'MarkerFaceColor','w','MarkerEdgeColor','black')

@@ -1,26 +1,27 @@
 function get_output(exp_id)
 % if you want to combine two injections you have to manually combine the
 % results in the next section and in this section you should  use this:
-% [delete_this_annotations,levels_2_keep,selected_area,st,tv,av,...
-%     colorxID_rgb,parent_ID,IDs,full_name,acronym,size_dots,plot_right_only]=get_ABA_data('input');
 
-[delete_this_annotations,levels_2_keep,selected_area,st,tv,av,...
-    colorxID_rgb,parent_ID,IDs,full_name,acronym,size_dots,plot_right_only]=get_ABA_data('output',exp_id);
+
+  [descendents_seed,base_level,...
+    st,tv,av,plot_right_only]=get_ABA_data('output',exp_id);
+
+
 
 
 %% OUTPUT
 
 % download data from ABA
 
-result = getProjectionDataFromExperiment(exp_id)
-
+output=getProjectionDataFromExperiment(exp_id)
+result=output{1};
 % you can combine multiple experiments do as follows:
 
-% result = getProjectionDataFromExperiment(114472145)%0.35mm^3
-% result2 = getProjectionDataFromExperiment(113226232)%0.55mm^3
+% result = getProjectionDataFromExperiment(114472145);%0.35mm^3
+% result2 = getProjectionDataFromExperiment(113226232);%0.55mm^3
 
-% %normalize per injection volume
-
+%normalize per injection volume
+% 
 % inj_vol_1=0.35;
 % inj_vol_2=0.55;
 % ratio=1/(inj_vol_1/inj_vol_2);
@@ -30,83 +31,54 @@ result = getProjectionDataFromExperiment(exp_id)
 
 %%
 
-strenght_connection=[];
-x=[result{1,1}.max_voxel_x]/10;
-z=[result{1,1}.max_voxel_y]/10;
-y=[result{1,1}.max_voxel_z]/10;
-structure_ID=[result{1,1}.structure_id];
+result([result.is_injection]==1)=[];
+result([result.projection_density]==0)=[]; 
 
-
+% norm_projection_density when more than one exp
 if exist ('norm_projection_density','var')
     
-    strenght_connection=norm_projection_density*size_dots;
+    result.strenght_connection=norm_projection_density*size_dots;
     
 else
     
-strenght_connection=([result{1,1}.projection_density])*size_dots; %sum of detected projection pixels / sum of all pixels in voxel
+% temp=([result.projection_density])*size_dots;
+%     temp=([result.normalized_projection_volume])*size_dots;
+%     temp=([result.projection_intensity])*size_dots;
+   
+        
+        % https://alleninstitute.github.io/AllenSDK/unionizes.html
+        
+ %sum of detected projection pixels / sum of all pixels in voxel
 
 end
 
-[structure_ID,x,y,z,strenght_connection]= brain_areas_cleaner(x,y,z,strenght_connection,structure_ID,levels_2_keep,delete_this_annotations,IDs,parent_ID,selected_area);
+result= brain_areas_cleaner(result,st,descendents_seed);
 
 
 %%
 
-plot_3d_brain_with_connectivity(x,y,z,strenght_connection,selected_area,structure_ID,IDs,av,st,colorxID_rgb,plot_right_only)
+plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,3)
 
 
 %% histogram
 
-[~,II]=sort(strenght_connection,'descend');
-aaa=structure_ID(II)';
-strenght_connection=strenght_connection(II);
-
-b=unique(aaa);
-
-for ii=1:numel(b)
-    
-    idx=ismember(aaa,b(ii));
-    
-    if sum(idx)>1
-        list(ii,1)=b(ii);
-       list(ii,2)=mean(strenght_connection(idx));
-    else
-        list(ii,1)=b(ii);
-         list(ii,2)=strenght_connection(idx);
-    end
-end
+BRIO_hist(result,0);
 
 
-[~,II]=sort(list(:,2),'descend');
-list=list(II,:);
-list_cell=num2cell(list);
-
-for ii=1:numel(list(:,1))
-    list_cell(ii,3)=acronym(IDs==list(ii,1));
-    list_cell(ii,4)=full_name(IDs==list(ii,1));
-     list_cell{ii,5}=colorxID_rgb(IDs==list(ii,1),:);
-end
+%% consolidate data in main regions
 
 
-hh=figure;
-h=bar(1:length(list),list(:,2));
-h.FaceColor = 'flat';
-h.CData =  cell2mat(list_cell(:,5));
-h.EdgeColor ='none';
-ax=gca;
-xticks(1:length(list(:,1)))
- nColors = length(list(:,1));
-cm = cell2mat(list_cell(:,5));
+result_processed=BRIO_consolidate(result,st)
 
-for i = 1:nColors
-ax.XTickLabel{i} = sprintf('\\color[rgb]{%f,%f,%f}%s', ...
-cm(i,:), list_cell{i,3});
-end
 
- xtickangle(0)
- box off
- view([90 -270])
- makepretty(1)
-set(hh, 'Position', [0 0 200 800])
-set(gca,'yscale','log')
+%% histogram
+
+BRIO_hist(result_processed,1);
+
+
+%% pie
+
+
+BRIO_pie(result_processed);
+
 

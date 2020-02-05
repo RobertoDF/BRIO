@@ -33,6 +33,8 @@ result.structure_id=table2array(input_table(:,4));
 result.projection_energy=(target_volume./inject_volume);
 
 
+% result.projection_energy=result.projection_energy/max(result.projection_energy);
+
  result = table2struct( result);
 
 
@@ -53,12 +55,12 @@ BRIO_hist(result,0);
 %% consolidate data in main regions
 
 
-result_processed=BRIO_consolidate(result,st);
+result_processed=BRIO_consolidate(result)
 
 
 %% histogram
 
-BRIO_hist(result_processed,1);
+BRIO_hist(result,0);
 %% pie
 
 
