@@ -2,7 +2,6 @@ function plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_righ
 
 
 
-
 figure('Position',[2017          38        1737         911])
 bregma = allenCCFbregma();
 isBrain = av>1; % >0 for original av, >1 for by_index
@@ -24,7 +23,7 @@ for qqq=1:numel(result)
     color =hex2rgb(result(qqq).hex);
     
     scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
-        result(qqq).normalized_projection_volume*size_dots ...
+        result(qqq).projection_energy*size_dots ...
         ,color,'filled')
 end
 

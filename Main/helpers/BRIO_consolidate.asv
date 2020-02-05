@@ -125,7 +125,8 @@ result_processed([result_processed.structure_id]==0)=[];
       
 %delete annotations in cortical plate(imprecise)
    result_processed([result_processed.structure_id]==695)=[];
-      
+   
+   
 %average projection density for points in the same structure
 
 for qqq=1:numel(result_processed)

@@ -30,19 +30,18 @@ result.max_voxel_y=inject_coor(:,2);
 result.max_voxel_z=inject_coor(:,3);
 result.hex=table2array(input_table(:,13));
 result.structure_id=table2array(input_table(:,4));
-result.projection_energy=(target_volume./inject_volume);
+result.normalized_projection_volume=(target_volume./inject_volume);
 
 
  result = table2struct( result);
 
 
-result= brain_areas_cleaner(result,st,descendents_seed);
+result= prepare_result(result,st,descendents_seed);
 
 
 %%
 
 plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,30)
-
 
 
 %% histogram

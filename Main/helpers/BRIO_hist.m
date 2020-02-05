@@ -43,7 +43,8 @@ xticks([])
 end
 
 
-
+ax.YDir = 'reverse'
+camroll(-90)
 
 
 makepretty(1)

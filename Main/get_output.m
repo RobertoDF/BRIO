@@ -39,22 +39,11 @@ if exist ('norm_projection_density','var')
     
     result.strenght_connection=norm_projection_density*size_dots;
     
-else
-    
-% temp=([result.projection_density])*size_dots;
-%     temp=([result.normalized_projection_volume])*size_dots;
-%     temp=([result.projection_intensity])*size_dots;
-   
-        
-        % https://alleninstitute.github.io/AllenSDK/unionizes.html
-        
- %sum of detected projection pixels / sum of all pixels in voxel
-
 end
 
-result= brain_areas_cleaner(result,st,descendents_seed);
+result= prepare_result(result,st,descendents_seed);
 
-
+% https://alleninstitute.github.io/AllenSDK/unionizes.html
 %%
 
 plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,3)
