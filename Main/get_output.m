@@ -1,45 +1,39 @@
-function get_output(exp_id)
-% if you want to combine two injections you have to manually combine the
-% results in the next section and in this section you should  use this:
-
-
-  [descendents_seed,base_level,...
-    st,tv,av,plot_right_only]=get_ABA_data('output',exp_id);
-
-
-
 
 %% OUTPUT
 
+%exp_id: insert id experiment from Allen brain Atlas. e.g. 114472145.
+
+
+
+for qqq=1:numel(exp_id)
+    
+  [descendents_seed,base_level,...
+    st,tv,av,plot_right_only]=get_ABA_data('output',exp_id(qqq));
+
+%%
 % download data from ABA
 
-output=getProjectionDataFromExperiment(exp_id)
-result=output{1};
-% you can combine multiple experiments do as follows:
+output=getProjectionDataFromExperiment(exp_id(qqq))
+temp=output{1};
 
-% result = getProjectionDataFromExperiment(114472145);%0.35mm^3
-% result2 = getProjectionDataFromExperiment(113226232);%0.55mm^3
+ projection_energy_normalized=num2cell([temp.projection_energy].*inj_vol(qqq))';
+ 
+ %normalize by injection volume
+ [temp.projection_energy_normalized]= projection_energy_normalized{:};
 
-%normalize per injection volume
-% 
-% inj_vol_1=0.35;
-% inj_vol_2=0.55;
-% ratio=1/(inj_vol_1/inj_vol_2);
-% norm_projection_density=[result{1,1}.projection_density]*ratio;
-% norm_projection_density=[norm_projection_density result2{1,1}.projection_density];
-%  result {1} = [result{1} ,result2{1}];
+ result_temp{qqq}=temp;
+end
+
+result=[];
+for qqq=1:numel(result_temp)
+    result=[ result result_temp{qqq}]
+end
 
 %%
 
 result([result.is_injection]==1)=[];
 result([result.projection_density]==0)=[]; 
 
-% norm_projection_density when more than one exp
-if exist ('norm_projection_density','var')
-    
-    result.strenght_connection=norm_projection_density*size_dots;
-    
-end
 
 result= prepare_result(result,st,descendents_seed);
 

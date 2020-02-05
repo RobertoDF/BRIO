@@ -1,12 +1,12 @@
-function BRIO_hist(result,legend)
+function BRIO_hist(result,labels)
 
  result = struct2table(result);
- result = sortrows(result, 'projection_energy');
+ result = sortrows(result, 'projection_energy_normalized');
  result = table2struct( result);
 
 
 hh=figure;
-h=bar(1:length(result),[result.projection_energy]);
+h=bar(1:length(result),[result.projection_energy_normalized]);
 h.FaceColor = 'flat';
 colors=[];
 
@@ -25,26 +25,29 @@ h.EdgeColor ='none';
 ylabel('Projection Energy')
 
 
-if legend ==1
-ax=gca;
-
-for qqq = 1:numel(result)
-ax.XTickLabel{qqq} = sprintf('\\color[rgb]{%f,%f,%f}%s', ...
-colors(qqq,:), char(result(qqq).name));
-end
-
-xticks([1:numel(result)])
-xtickangle(45)
-
-else
+if labels ==1
     
-xticklabels([])
-xticks([])
+    
+    for qqq = 1:numel(result)
+        ax.XTickLabel{qqq} = sprintf('\\color[rgb]{%f,%f,%f}%s', ...
+            colors(qqq,:), char(result(qqq).name));
+    end
+    
+    xticks([1:numel(result)])
+    xtickangle(45)
+    
+else
+    ax=gca;
+    
+    
+    camroll(90)
+     ax.YDir = 'reverse'
+    xticklabels([])
+    xticks([])
+ 
 end
 
 
-ax.YDir = 'reverse'
-camroll(-90)
 
 
 makepretty(1)

@@ -1,5 +1,5 @@
 function result= prepare_result(result,st,descendents_seed)
-
+% get rid of annotation in injection region and not in grey matter
 
 for qqq=1:numel(result)
     
@@ -24,11 +24,11 @@ for qqq=1:numel(result)
     temp=getAllenStructureList('ancestorsOf' ,result(qqq).structure_id);
 
  % if the structure derive from either: fiber tracts, ventricular system, grooves or retina
-    %>>>> bring to level 1
+    %>>>> assign nan
     
     if any(temp.id==1009|temp.id==73|temp.id==1024|temp.id==304325711)
         
-        result(qqq).structure_id=nan;
+        result(qqq).structure_id=997;% root
         
     end
 
@@ -42,6 +42,4 @@ for qqq=1:numel(result)
     end
 end
 
-
-%nan are converted to zeros!!!but we don´t care, no structure has id==0
-result([result.structure_id]==0)=[];
+result([result.structure_id]==997)=[];

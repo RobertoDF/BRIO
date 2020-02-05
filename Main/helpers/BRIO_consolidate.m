@@ -1,15 +1,14 @@
 function result_processed=BRIO_consolidate(result,st)
 
 result_processed=result;
-% depth level 8, bring everything to that level
 
-for qqq=1:numel(result)
-    
-    temp=getAllenStructureList('ancestorsOf' ,result(qqq).structure_id);
-    
     % reassign structure_id
+
+for qqq=1:numel(result_processed)
     
+    temp=getAllenStructureList('ancestorsOf' ,result_processed(qqq).structure_id);
     
+
      %DELETE imprecise annotations 
      
  
@@ -18,7 +17,7 @@ for qqq=1:numel(result)
          end
          
           
-             % if the structure derive from : Cerebrum>>>> DELETE imprecise
+     % if the structure derive from : Cerebrum>>>> DELETE imprecise
      % annotations (I´ll do the same for each category)
      
     if any(temp.id==567)
@@ -28,9 +27,7 @@ for qqq=1:numel(result)
          end
          
     end
-    
-         
-    
+
     %bring all to level 6
     if result(qqq).depth>6
         
@@ -38,10 +35,10 @@ for qqq=1:numel(result)
     end
     
     
-     % if the structure derive from : Isocortex or hippocampal formation>>>> DELETE imprecise
+     % if the structure derive from : Cortical plate>>>> DELETE imprecise
      % annotations (I´ll do the same for each category)
      
-    if any(temp.id==315|temp.id==1089)
+    if any(temp.id==695)
         
          if result_processed(qqq).depth<6
               result_processed(qqq).structure_id=nan;
@@ -112,19 +109,14 @@ for qqq=1:numel(result)
     end
 end
 
-% if the structure derive from either: fiber tracts, ventricular system, grooves or retina
-%>>>> DELETE
 
-result_processed([result_processed.structure_id]==997)=[];
+
 
 % if the structure annotation is inprecise
 %>>>> DELETE
-
-%nan are converted to zeros!!!but we don´t care, no structure has id==0
+%for some reasons nan are converted to zeros
 result_processed([result_processed.structure_id]==0)=[];
       
-%delete annotations in cortical plate(imprecise)
-   result_processed([result_processed.structure_id]==695)=[];
       
 %average projection density for points in the same structure
 
