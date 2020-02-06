@@ -1,35 +1,24 @@
-function BRIO_pie(result)
-
-
- result = struct2table(result);
- result = sortrows(result, 'projection_energy_normalized');
- result = table2struct( result);
+function BRIO_pie(summary)
 
 colors=[];
-for qqq=1:numel(result)
-
-colors=vertcat(colors, hex2rgb(result(qqq).hex));
-
-end
-
-name=[];
-for qqq=1:numel(result)
-
-name{qqq}=result(qqq).name;
-
-end
+ y=[summary{:,3}];
+    
+    for qqq=1:numel(summary(:,1))
+        
+        colors=vertcat(colors, hex2rgb(summary{qqq,4}));
+   
+    end
 
 
 % delete if value less than one, pie gets messy
 thr=1;
 
-y=[result.projection_energy_normalized]';
 colors(y<thr,:)=[];
-name(y<thr)=[];
+summary((y<thr),:)=[];
 y(y<thr)=[];
 
 figure
-ppp=pie(y,ones(numel(y),1),name);
+ppp=pie(y,ones(numel(y),1),[summary{:,5}]);
 colormap(colors)
 
 
@@ -38,6 +27,7 @@ for qqq = 2:2:numel(y)*2
 ppp(qqq).Color = colors(qqq/2,:);
 ppp(qqq).FontWeight='Bold';
 end
+
 
 
 % legend  (name,'Location','northeastoutside')

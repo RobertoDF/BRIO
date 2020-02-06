@@ -1,4 +1,4 @@
-function [summary]=BRIO_consolidate(result,st)
+function [result_processed,summary]=BRIO_consolidate(result,st)
 % in result_processed structure_id is 
 
 
@@ -149,7 +149,8 @@ for qqq=1:numel(summary(:,1))
     
    summary{qqq,3}=mean([ summary{qqq,2}]);%mean
    summary{qqq,4}=st.color_hex_triplet(st.id== summary{qqq,1});   %color
-   summary{qqq,5}=st.safe_name(st.id== summary{qqq,1});   %name
 end
 
- summary = sortrows(summary, [3]);
+
+
+[~,ind]=sort(summary(:,3)

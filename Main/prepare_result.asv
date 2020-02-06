@@ -1,8 +1,6 @@
 function result= prepare_result(result,st,descendents_seed)
 % get rid of annotation in injection region and not in grey matter
 
-
-
 for qqq=1:numel(result)
     
   result(qqq).st_level=  st.st_level(st.id==result(qqq).structure_id) ;
@@ -10,6 +8,8 @@ for qqq=1:numel(result)
   result(qqq).hex=st.color_hex_triplet(st.id==result(qqq).structure_id);    
    result(qqq).name=st.safe_name(st.id==result(qqq).structure_id);    
   
+   
+   
 end
 
 
