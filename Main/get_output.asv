@@ -1,7 +1,8 @@
 
 %% OUTPUT
 
-%exp_id: insert id experiment from Allen brain Atlas. e.g. 114472145.
+%exp_id: vector of injections ids
+%inj_vol: vector of injections volume. needed to normalize cross different injections
 
 
 
@@ -24,11 +25,10 @@ temp=output{1};
  result_temp{qqq}=temp;
 end
 
+result=[];
 for qqq=1:numel(result_temp)
-    result=
-
-
-
+    result=[ result result_temp{qqq}]
+end
 
 %%
 
@@ -41,7 +41,7 @@ result= prepare_result(result,st,descendents_seed);
 % https://alleninstitute.github.io/AllenSDK/unionizes.html
 %%
 
-plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,3)
+plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,10)
 
 
 %% histogram

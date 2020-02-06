@@ -40,6 +40,6 @@ ppp(qqq).FontWeight='Bold';
 end
 
 
-legend  (name,'Location','northeastoutside')
+% legend  (name,'Location','northeastoutside')
 
 makepretty(1)
