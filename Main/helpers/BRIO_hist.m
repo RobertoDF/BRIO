@@ -28,14 +28,15 @@ hh=figure('Position',[      2311          47         576         945]);
 h=bar(1:numel(summary(:,1)),y);
 hold on
 
-
+if labels ==1
 for qqq=1:numel(summary(:,1))
     er = errorbar(qqq,y(qqq), [],errbar(qqq));
    er.Color = colors(qqq,:);                            
 er.LineStyle = 'none';  
 er.LineWidth=1;
 end
- 
+end
+
 h.FaceColor = 'flat';
 
 h.CData = colors;
