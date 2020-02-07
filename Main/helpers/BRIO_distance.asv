@@ -1,0 +1,65 @@
+function BRIO_distance(result,summary)
+
+
+   result = struct2table(result);
+    result = sortrows(result, 'distance');
+    result = table2struct( result);
+    
+colors=[];
+
+    
+    for qqq=1:numel(result)
+        
+        colors=vertcat(colors, hex2rgb(result(qqq).hex));
+   
+    end
+
+   y=log10([result.projection_energy_normalized ]);
+ x=[result.distance]/10;%µm
+ 
+ 
+figure('Position',[      2311          47         576         945]);
+
+sss=scatter(x,y,20,colors,'filled','MarkerEdgeColor' ,'none')
+
+ 
+xlabel('Distance (µm)')
+ylabel('log(Projection energy)')
+makepretty(1)
+
+hold on
+
+%add regression
+
+
+   
+p = polyfit(x,y,2);
+y1 = polyval(p,x);
+plot(x,y1,'LineWidth',2,'Color',[0 0 0])
+
+
+
+for qqq=1:numel(summary(:,1))
+ 
+    idx=([result.consolidated_structure_id]==summary{qqq,1});
+    
+    
+p = polyfit(x(idx),y(idx),2);
+y1 = polyval(p,x(idx));
+plot(x(idx),y1,'LineWidth',2,'Color',hex2rgb(summary{qqq,4}))
+end
+
+xticks([0:200:1000])
+
+
+
+for qqq = 2:2:numel(y)*2
+ppp(qqq).Color = colors(qqq/2,:);
+ppp(qqq).FontWeight='Bold';
+end
+
+
+
+% legend  (name,'Location','northeastoutside')
+
+makepretty(1)
