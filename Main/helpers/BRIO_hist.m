@@ -10,7 +10,7 @@ if isstruct(summary)==1
     for qqq=1:numel(summary)
         
         colors=vertcat(colors, hex2rgb(summary(qqq).hex));
-           errbar(qqq)=0;
+        
     end
     
 else
@@ -28,26 +28,27 @@ hh=figure('Position',[      2311          47         576         945]);
 h=bar(1:numel(summary(:,1)),y);
 hold on
 
-if labels ==1
-for qqq=1:numel(summary(:,1))
-    er = errorbar(qqq,y(qqq), [],errbar(qqq));
-   er.Color = colors(qqq,:);                            
-er.LineStyle = 'none';  
-er.LineWidth=1;
+if isstruct(summary)==0
+    for qqq=1:numel(summary(:,1))
+        er = errorbar(qqq,y(qqq), [],errbar(qqq));
+        er.Color = colors(qqq,:);
+        er.LineStyle = 'none';
+        er.LineWidth=1;
+    end
 end
-end
+
 
 h.FaceColor = 'flat';
 
 h.CData = colors;
-set(gca,'YScale','log')
+
 
 h.EdgeColor ='none';
 
-ylabel('Projection Energy')
+ylabel('log(Projection Energy)')
 
-  ax=gca;
-  camroll(90)
+ax=gca;
+camroll(90)
 ax.YDir = 'reverse'
 
 
@@ -83,16 +84,18 @@ if labels ==1
     
     xticklabels([])
     xticks([])
+    set(gca,'yscale','log')
+       ylim([0.00100000000000000,1000])
+      yticklabels([-3:3])
+    
 else
     
-    
-    xticklabels([])
+    set(gca,'yscale','log')
+    ylim([  1.00000000000000e-10,10000   ])
+      yticklabels([-10:2:4])
     xticks([])
     
 end
 
-
-
 makepretty(1)
 
-set(gca,'yscale','log')

@@ -10,7 +10,7 @@ for qqq=1:numel(result)
     
     %DELETE imprecise annotations
     
-    if result(qqq).depth<2
+    if result(qqq).depth<3
         result(qqq).structure_id=0;
         result(qqq).consolidated_structure_id=0;%assign zero as no stucture_id==0
         
@@ -34,6 +34,7 @@ for qqq=1:numel(result)
     if result(qqq).depth>6
         
         result(qqq).consolidated_structure_id=temp.id(temp.depth==6);
+        result(qqq).consolidated_structure_id_general=temp.id(temp.depth==6);
         
     end
     
@@ -46,12 +47,12 @@ for qqq=1:numel(result)
         if result(qqq).depth<6
             result(qqq).structure_id=0;
             result(qqq).consolidated_structure_id=0;
-                 result(qqq).consolidated_structure_id_general =0;
+            result(qqq).consolidated_structure_id_general =0;
         end
         
     end
     
-       % if the structure derive from : Cerebral cortex>>>> bring to level 4
+    % if the structure derive from : Cerebral cortex>>>> bring to level 4
     
     if any(temp.id==688)
         
@@ -59,21 +60,35 @@ for qqq=1:numel(result)
         
     end
     
+    
+    
     % if the structure derive from either: Hindbrain, Interbrain, Cerebral
-    % Nuclei, Cortical subplate>>>> bring to level 4
+    % Nuclei, Cortical subplate>>>> bring to level 4 and 3
     
     if any(temp.id==1065|temp.id==1129|temp.id==623|temp.id==703)
         
         result(qqq).consolidated_structure_id=temp.id(temp.depth==4);
-        result(qqq).consolidated_structure_id_general =temp.id(temp.depth==4);
+        result(qqq).consolidated_structure_id_general =temp.id(temp.depth==3);
         
         if result(qqq).depth<4
             result(qqq).structure_id=0;
             result(qqq).consolidated_structure_id=0;
-                 result(qqq).consolidated_structure_id_general =0;
+            result(qqq).consolidated_structure_id_general =0;
         end
         
     end
+    
+    % if the structure derive from either: Hindbrain, Interbrain, Cerebral
+    % Nuclei, Cortical subplate>>>> bring to level 4
+    
+    if any(temp.id==703)
+        
+        
+        result(qqq).consolidated_structure_id_general =temp.id(temp.depth==4);
+        
+        
+    end
+    
     
     % if the structure derive from : Olfactory areas>>>> bring to
     % level 5
@@ -81,25 +96,21 @@ for qqq=1:numel(result)
         
         result(qqq).consolidated_structure_id=temp.id(temp.depth==5);
         
-        if result(qqq).depth<5
-            result(qqq).structure_id=0;
-            result(qqq).consolidated_structure_id=0;
-                 result(qqq).consolidated_structure_id_general =0;
-        end
+        
     end
     
     % if the structure derive from : Midbrain>>>> bring to
     % level 3
     if any(temp.id==313)
         
-        result(qqq).consolidated_structure_id=temp.id(temp.depth==3);        
+        result(qqq).consolidated_structure_id=temp.id(temp.depth==3);
         result(qqq).consolidated_structure_id_general =temp.id(temp.depth==3);
         
         
         if result(qqq).depth<3
             result(qqq).structure_id=0;
             result(qqq).consolidated_structure_id=0;
-                 result(qqq).consolidated_structure_id_general =0;
+            result(qqq).consolidated_structure_id_general =0;
         end
         
     end
@@ -115,7 +126,7 @@ for qqq=1:numel(result)
         if result(qqq).depth<2
             result(qqq).structure_id=0;
             result(qqq).consolidated_structure_id=0;
-                 result(qqq).consolidated_structure_id_general =0;
+            result(qqq).consolidated_structure_id_general =0;
         end
     end
     
@@ -124,7 +135,7 @@ for qqq=1:numel(result)
     if isempty( result(qqq).structure_id)==1
         result(qqq).structure_id=0;
         result(qqq).consolidated_structure_id=0;
-             result(qqq).consolidated_structure_id_general =0;
+        result(qqq).consolidated_structure_id_general =0;
     end
     
     
@@ -154,6 +165,7 @@ for qqq=II
     
     ind=find([result.consolidated_structure_id]==qqq);
     summary{nn,1}=result(ind(1)).consolidated_structure_id;
+    summary{nn,6}=result(ind(1)).consolidated_structure_id_general;
     n=1;
     for www=ind
         
@@ -174,9 +186,10 @@ end
 for qqq=1:numel(summary(:,1))
     
     summary{qqq,3}=mean([ summary{qqq,2}]);%mean
-    summary{qqq,4}=st.color_hex_triplet(st.id== summary{qqq,1});   %color
+    summary{qqq,4}=st.color_hex_triplet(st.id== summary{qqq,1});   %color consolidated structure
     summary{qqq,5}=st.safe_name(st.id== summary{qqq,1});   %name
+    summary{qqq,7}=st.color_hex_triplet(st.id== summary{qqq,6});   %color consolidated_general structure
 end
 
 summary = sortrows(summary, [3]);
-fprintf('\n DONE!')
+fprintf('\n DONE consolidating!')

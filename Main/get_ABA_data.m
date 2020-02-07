@@ -1,10 +1,10 @@
 function [descendents_seed,base_level,...
     st,tv,av,plot_right_only]=get_ABA_data(type,exp_id)
 
-%% get basic data from allen brain atlas 
+%% get basic data from allen brain atlas
 
 
-if strcmp(type,'output') 
+if strcmp(type,'output')
     Id_injection = getInjectionIDfromExperiment(exp_id);
 end
 
@@ -56,8 +56,8 @@ ancestors_seed=ancestors_seed(ancestors_seed.st_level==8,:);
 % plot_right_only = convertCharsToStrings(questdlg('Would you like to plot source region only on one hemisphere?', ...
 % 	'Dessert Menu', ...
 % 	'Yes','No','No'));
-    plot_right_only=1;
-    
+plot_right_only=1;
+
 %get descendents
 descendents_seed=getAllenStructureList('childrenOf' ,ancestors_seed.id);
 
