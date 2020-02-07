@@ -56,7 +56,7 @@ ancestors_seed=ancestors_seed(ancestors_seed.st_level==8,:);
 % plot_right_only = convertCharsToStrings(questdlg('Would you like to plot source region only on one hemisphere?', ...
 % 	'Dessert Menu', ...
 % 	'Yes','No','No'));
-plot_right_only=1;
+plot_right_only='Yes';
 
 %get descendents
 descendents_seed=getAllenStructureList('childrenOf' ,ancestors_seed.id);

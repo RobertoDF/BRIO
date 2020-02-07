@@ -13,7 +13,7 @@ result(log10([result.projection_energy_normalized])<-2)=[];
 
 for qqq=1:numel(result)
     
-    colors=vertcat(colors, hex2rgb(result(qqq).hex));
+    colors=vertcat(colors, hex2rgb(st.color_hex_triplet([st.id]==result(qqq).consolidated_structure_id_general)));
     
 end
 

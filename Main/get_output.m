@@ -61,7 +61,7 @@ result= prepare_result(result,st,descendents_seed,injection);
 
 plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,10)
 
-
+% save as png but vectorized! use native matlab save
 %% histogram
 
 BRIO_hist(result,0);
