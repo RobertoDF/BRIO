@@ -10,7 +10,7 @@ input = inputdlg({'Experiment ID','Injection Volume (mm^3)'},...
 exp_id=str2num(input{1});
 inj_vol=str2num(input{2});
 
-
+%%
 %choose metric
 list = {'projection_energy_normalized','projection_density_normalized','projection_intensity_normalized',...                   
 'normalized_projection_volume'};
