@@ -11,11 +11,13 @@ exp_id=str2num(input{1});
 inj_vol=str2num(input{2});
 
 %%
+
 %choose metric
 list = {'projection_energy_normalized','projection_density_normalized','projection_intensity_normalized',...                   
 'normalized_projection_volume'};
 qqq = listdlg('ListString',list,'SelectionMode','single','PromptString','Connectivity metric');
 metric=list{qqq};
+
 %%
 % download data from ABA
 st=getAllenStructureList();
