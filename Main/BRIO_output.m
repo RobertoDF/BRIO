@@ -98,7 +98,7 @@ plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,me
 
 %% consolidate data in main regions
 
-[consolidated_summary,result]=BRIO_consolidate(result,st,metric);
+[consolidated_summary,result]=BRIO_consolidate(result,st);
 
 %% histogram
 

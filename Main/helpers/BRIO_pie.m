@@ -4,12 +4,16 @@ colors=[];
 
 switch metric
     case 'projection_energy_normalized'
+         summary = sortrows(summary, 7);
         y=[summary{:,7}];
     case 'projection_density_normalized'
+                 summary = sortrows(summary, 8);
         y=[summary{:,8}];
     case 'projection_intensity_normalized'
+                 summary = sortrows(summary, 9);
         y=[summary{:,9}];
     case 'normalized_projection_volume'
+                 summary = sortrows(summary, 10);
         y=[summary{:,10}];
 end
 

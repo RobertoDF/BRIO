@@ -19,8 +19,6 @@ for qqq=1:numel(result)
 end
 
 
-
-
 switch metric
     case 'projection_energy_normalized'
         y=log10([result.projection_energy_normalized ]);
@@ -55,8 +53,6 @@ end
 
 
 makepretty(1)
-
-
 
 
 
@@ -100,7 +96,7 @@ leg.Box='Off';
 
 
 xticks([0:200:1000])
-yticks([-10:2:10])
+% yticks([-10:2:10])
 
 
 

@@ -101,12 +101,13 @@ camroll(90)
 ax.YDir = 'reverse'
 
 yl=ylim;
-half=(yl(2)-yl(1))/80;
+half=yl(2)-yl(1);
+
 if labels_on==1
     if isstruct(summary)==1
         
         for qqq = 1:numel(summary)
-            if y(qqq)<half
+            if y(qqq)<1
                 
                 ax.XTickLabel{qqq} = sprintf('\\color[rgb]{%f,%f,%f}%s', ...
                     colors(qqq,:), char(summary(qqq).name));
@@ -117,16 +118,7 @@ if labels_on==1
             end
         end
         
-    else
-        for qqq = 1:numel(summary(:,1))
-            if y(qqq)<half
-                text( qqq,y(qqq)+(errbar(qqq)*3),sprintf('\\color[rgb]{%f,%f,%f}%s', ...
-                    colors(qqq,:), char(summary{qqq,12})),'FontWeight','bold')
-            else
-                text( qqq,y(1),sprintf('\\color[rgb]{%f,%f,%f}%s', ...
-                    [1 1 1], char(summary{qqq,12})),'FontWeight','bold')
-            end
-        end
+       
     end
     
     
@@ -141,8 +133,8 @@ if labels_on==1
 else
     
     set(gca,'yscale','log')
-%     ylim([  1.00000000000000e-10,10000   ])
-%     yticklabels([-10:2:4])
+    ylim([  1.00000000000000e-10,10000   ])
+    yticklabels([-10:2:4])
     xticks([])
     
 end

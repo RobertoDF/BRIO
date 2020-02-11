@@ -122,34 +122,34 @@ switch metric
         
     case 'projection_density_normalized'
         
-%         
-%         scatter3(1,1,1,0.2*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
-%         
-%         scatter3(1,1,150,0.02*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
-%         
-%         scatter3(1,1,200,0.002*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,1,0.2*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,150,0.02*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,200,0.002*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
         
     case 'projection_intensity_normalized'
         
-%          scatter3(1,1,1,0.2*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
-%         
-%         scatter3(1,1,150,0.02*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
-%         
-%         scatter3(1,1,200,0.002*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
+         scatter3(1,1,1,2000*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,150,200*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,200,20*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
         
     case 'normalized_projection_volume'
-%        scatter3(1,1,1,0.2*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
-%         
-%         scatter3(1,1,150,0.02*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
-%         
-%         scatter3(1,1,200,0.002*size_dots, ...
-%             'MarkerFaceColor','w','MarkerEdgeColor','black')
+       scatter3(1,1,1,7*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,150,0.7*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
+        
+        scatter3(1,1,200,0.07*size_dots, ...
+            'MarkerFaceColor','w','MarkerEdgeColor','black')
 end
