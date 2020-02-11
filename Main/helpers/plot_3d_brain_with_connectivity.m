@@ -1,4 +1,4 @@
-function plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,size_dots)
+function plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
 
 
 
@@ -19,12 +19,44 @@ hold on
 
 for qqq=1:numel(result)
     
+    switch metric
+        
+        case 'projection_energy_normalized'
+            
+            size_dots=10;
+            
+            color =hex2rgb(result(qqq).hex);
+            scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
+                result(qqq).projection_energy_normalized*size_dots ...
+                ,color,'filled')
+            
+        case 'projection_density_normalized'
+            
+            
+            size_dots=10000;
+            
+            
+            color =hex2rgb(result(qqq).hex);
+            scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
+                result(qqq).projection_density_normalized*size_dots ...
+                ,color,'filled')
+        case 'projection_intensity_normalized'
+            
+            size_dots=2;
+            
+            
+            color =hex2rgb(result(qqq).hex);
+            scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
+                result(qqq). projection_intensity_normalized*size_dots ...
+                ,color,'filled')
+        case 'normalized_projection_volume'
+               size_dots=20;
+            color =hex2rgb(result(qqq).hex);
+            scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
+                result(qqq). normalized_projection_volume*size_dots ...
+                ,color,'filled')
+    end
     
-    color =hex2rgb(result(qqq).hex);
-    
-    scatter3(result(qqq).max_voxel_x/10,result(qqq).max_voxel_z/10,result(qqq).max_voxel_y/10,...
-        result(qqq).projection_energy_normalized*size_dots ...
-        ,color,'filled')
 end
 
 
@@ -72,12 +104,12 @@ for qqq = 1:numel(descendents_seed(:,1))
     
 end
 
-
-scatter3(1,1,1,200*size_dots, ...
-    'MarkerFaceColor','w','MarkerEdgeColor','black')
-
-scatter3(1,1,150,20*size_dots, ...
-    'MarkerFaceColor','w','MarkerEdgeColor','black')
-
-scatter3(1,1,200,2*size_dots, ...
-    'MarkerFaceColor','w','MarkerEdgeColor','black')
+% 
+% scatter3(1,1,1,200*size_dots, ...
+%     'MarkerFaceColor','w','MarkerEdgeColor','black')
+% 
+% scatter3(1,1,150,20*size_dots, ...
+%     'MarkerFaceColor','w','MarkerEdgeColor','black')
+% 
+% scatter3(1,1,200,2*size_dots, ...
+%     'MarkerFaceColor','w','MarkerEdgeColor','black')

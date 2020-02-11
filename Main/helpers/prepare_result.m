@@ -1,5 +1,4 @@
 function result= prepare_result(result,st,descendents_seed,injection)
-% get rid of annotation in injection region and not in grey matter
 
 
 for qqq=1:numel(result)
@@ -8,13 +7,14 @@ for qqq=1:numel(result)
     result(qqq).depth=st.depth(st.id==result(qqq).structure_id) ;
     result(qqq).hex=st.color_hex_triplet(st.id==result(qqq).structure_id);
     result(qqq).name=st.safe_name(st.id==result(qqq).structure_id);
+    
+     %add  distance from injection
     result(qqq).distance=norm([result(qqq).max_voxel_x result(qqq).max_voxel_y result(qqq).max_voxel_z]...
-        - [injection.x injection.y injection.z]);
-    
+        - [injection.x injection.y injection.z]);    
     %add  consolidated structure id field
-    result(qqq).consolidated_structure_id =result(qqq).structure_id;
-    
+    result(qqq).consolidated_structure_id =result(qqq).structure_id; 
     result(qqq).consolidated_structure_id_general =result(qqq).structure_id;
+    
 end
 
 
@@ -23,7 +23,6 @@ end
 to_delete=ismember([result.structure_id],descendents_seed.id)&[result.max_voxel_z]>400;
 
 result(to_delete)=[];
-
 
 fprintf('\n')
 

@@ -1,4 +1,4 @@
-function [summary,result]=BRIO_consolidate(result,st)
+function [summary,result]=BRIO_consolidate(result,st,metric)
 % in result_processed structure_id is
 
 % reassign structure_id
@@ -165,11 +165,15 @@ for qqq=II
     
     ind=find([result.consolidated_structure_id]==qqq);
     summary{nn,1}=result(ind(1)).consolidated_structure_id;
-    summary{nn,6}=result(ind(1)).consolidated_structure_id_general;
+    summary{nn,2}=result(ind(1)).consolidated_structure_id_general;
     n=1;
+    
     for www=ind
         
-        summary{nn,2}(n,1)=result(www).projection_energy_normalized;
+        summary{nn,3}(n,1)=result(www).projection_energy_normalized;
+        summary{nn,4}(n,1)=result(www).projection_density_normalized;
+        summary{nn,5}(n,1)=result(www).projection_intensity_normalized;
+        summary{nn,6}(n,1)=result(www).normalized_projection_volume;
         n=n+1;
         
     end
@@ -185,11 +189,20 @@ end
 
 for qqq=1:numel(summary(:,1))
     
-    summary{qqq,3}=mean([ summary{qqq,2}]);%mean
-    summary{qqq,4}=st.color_hex_triplet(st.id== summary{qqq,1});   %color consolidated structure
-    summary{qqq,5}=st.safe_name(st.id== summary{qqq,1});   %name
-    summary{qqq,7}=st.color_hex_triplet(st.id== summary{qqq,6});   %color consolidated_general structure
+    summary{qqq,7}=mean([ summary{qqq,3}]);%mean projection_energy_normalized
+    summary{qqq,8}=mean([ summary{qqq,4}]);%mean projection_density_normalized;
+    summary{qqq,9}=mean([ summary{qqq,5}]);%projection_intensity_normalized;
+    summary{qqq,10}=mean([ summary{qqq,6}]);%normalized_projection_volume;
+    summary{qqq,11}=st.color_hex_triplet(st.id== summary{qqq,1});   %color consolidated structure
+    summary{qqq,12}=st.safe_name(st.id== summary{qqq,1});   %name
+    summary{qqq,13}=st.color_hex_triplet(st.id== summary{qqq,2});   %color consolidated_general structure
+    summary{qqq,14}=st.safe_name(st.id== summary{qqq,2});   %name
+    
 end
 
-summary = sortrows(summary, [3]);
+
+
+
+
+
 fprintf('\n DONE consolidating!')

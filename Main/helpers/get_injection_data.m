@@ -1,4 +1,4 @@
-function [descendents_seed,plot_right_only]=get_injection_data(st,type,exp_id)
+function [ancestors_seed,descendents_seed,plot_right_only]=get_injection_data(st,type,exp_id)
 
 
 if strcmp(type,'output')

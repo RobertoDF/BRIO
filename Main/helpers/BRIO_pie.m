@@ -1,15 +1,53 @@
-function BRIO_pie(summary)
+function BRIO_pie(summary,metric)
 
 colors=[];
- y=[summary{:,3}];
-    
+
+switch metric
+    case 'projection_energy_normalized'
+        y=[summary{:,7}];
+    case 'projection_density_normalized'
+        y=[summary{:,8}];
+    case 'projection_intensity_normalized'
+        y=[summary{:,9}];
+    case 'normalized_projection_volume'
+        y=[summary{:,10}];
+end
+
     for qqq=1:numel(summary(:,1))
         
-        colors=vertcat(colors, hex2rgb(summary{qqq,4}));
+        colors=vertcat(colors, hex2rgb(summary{qqq,11}));
    
     end
 
-
+ switch metric
+        
+        case 'projection_energy_normalized'
+            
+            size_dots=10;
+            
+           y=y*size_dots;
+            
+        case 'projection_density_normalized'
+            
+            
+            size_dots=10000;
+            
+               
+           y=y*size_dots;
+           
+        case 'projection_intensity_normalized'
+            
+            size_dots=2;
+            
+               
+           y=y*size_dots;
+           
+        case 'normalized_projection_volume'
+               size_dots=20;
+              
+           y=y*size_dots;
+    end
+    
 % delete if value less than one, pie gets messy
 thr=1;
 
@@ -18,7 +56,7 @@ summary((y<thr),:)=[];
 y(y<thr)=[];
 
 figure
-ppp=pie(y,ones(numel(y),1),[summary{:,5}]);
+ppp=pie(y,ones(numel(y),1),[summary{:,12}]);
 colormap(colors)
 
 
