@@ -156,7 +156,7 @@ end
 result([result.structure_id]==0)=[];
 
 
-%create new  cell array with annotations divided by group
+%create new field with annotations divided by group
 
 [II,I ] = unique([result.consolidated_structure_id]);
 

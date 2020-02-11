@@ -16,11 +16,12 @@ output=getProjectionDataFromExperiment(exp_id)
     
 for qqq=1:numel(exp_id)
 
-    temp=output{qqq};
+    temp=output{1};
     
     %normalize by injection volume
     projection_energy_normalized=num2cell([temp.projection_energy].*inj_vol(qqq))';
     
+ 
     [temp.projection_energy_normalized]= projection_energy_normalized{:};
     
     result_temp{qqq}=temp;
@@ -32,7 +33,7 @@ for qqq=1:numel(result_temp)
     result=[ result result_temp{qqq}]
 end
 
-fprintf('ABA query succesful')
+fprintf('DONE!')
 %%
 % get coordinate of injection
 injection.x=mean([result([result.is_injection]==1).max_voxel_x]);
