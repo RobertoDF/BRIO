@@ -16,9 +16,10 @@ for qqq=1:numel(exp_id)
     output=getProjectionDataFromExperiment(exp_id(qqq))
     temp=output{1};
     
+    %normalize by injection volume
     projection_energy_normalized=num2cell([temp.projection_energy].*inj_vol(qqq))';
     
-    %normalize by injection volume
+ 
     [temp.projection_energy_normalized]= projection_energy_normalized{:};
     
     % for www=1:numel(temp)
