@@ -18,7 +18,8 @@ list = {'projection_energy_normalized','projection_density_normalized','projecti
 qqq = listdlg('ListString',list,'SelectionMode','single','PromptString','Connectivity metric');
 metric=list{qqq};
 
-%%
+%% Check selected seed structure
+
 % download data from ABA
 st=getAllenStructureList();
 tv = readNPY('C:\Users\Roberto\Documents\allen_atlas\template_volume_10um.npy');

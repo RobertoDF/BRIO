@@ -9,7 +9,7 @@ colors=[];
 
 %delete if projection energy less than 10^-2
 %
-result(log10([result.projection_energy_normalized])<-2)=[];
+ result(log10([result.projection_energy_normalized])<-6)=[];
 
 for qqq=1:numel(result)
     
@@ -75,7 +75,7 @@ n=1;
 for qqq=order
     
     idx=([result.consolidated_structure_id_general]==qqq);
-    
+    if sum(idx)>0
     p = polyfit(x(idx),y(idx),2);
     y1 = polyval(p,x(idx));
     
@@ -88,6 +88,7 @@ for qqq=order
     
     
     n=n+1;
+    end
 end
 leg=legend(ppp);
 
