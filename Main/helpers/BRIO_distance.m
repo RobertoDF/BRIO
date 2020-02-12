@@ -34,7 +34,7 @@ end
 x=[result.distance]/10;%µm
 
 
-figure('Position',[      2311          47         576         945]);
+figure('Position',[      231          47         576         945]);
 
 sss=scatter(x,y,20,colors,'filled','MarkerEdgeColor' ,'none')
 

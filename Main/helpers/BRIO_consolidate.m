@@ -2,7 +2,7 @@ function [summary,result]=BRIO_consolidate(result,st)
 % in result_processed structure_id is
 
 % reassign structure_id
-
+fprintf('\n')
 for qqq=1:numel(result)
     
     temp=getAllenStructureList('ancestorsOf' ,result(qqq).structure_id);

@@ -2,7 +2,7 @@ function fig=plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_
 
 
 
-fig=figure('Position',[2017          38        1737         911])
+fig=figure('Position',[201          38        1737         911])
 bregma = allenCCFbregma();
 isBrain = av>1; % >0 for original av, >1 for by_index
 gridIn3D(double(isBrain), 0.5, 50, bregma);

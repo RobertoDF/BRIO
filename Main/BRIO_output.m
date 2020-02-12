@@ -25,14 +25,14 @@ tv = readNPY('C:\Users\Roberto\Documents\allen_atlas\template_volume_10um.npy');
 av = readNPY('C:\Users\Roberto\Documents\allen_atlas\annotation_volume_10um_by_index.npy'); % the number at each pixel labels the area, see note below
 
 %get injection area
-if numel(exp_id)>1
-    
-    for qqq=1:numel(exp_id)
-        [ancestor,descendents_seed,plot_right_only]=get_injection_data(st,'output',exp_id(qqq));
-        ancestors(qqq)=table2array(ancestor(1,1));
-    end
-    
+
+
+for qqq=1:numel(exp_id)
+    [ancestor,descendents_seed,plot_right_only]=get_injection_data(st,'output',exp_id(qqq));
+    ancestors(qqq)=table2array(ancestor(1,1));
 end
+
+
 
 if exist('ancestors')
     

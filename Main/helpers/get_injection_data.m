@@ -28,7 +28,8 @@ end
 
 ancestors_seed=getAllenStructureList('ancestorsOf' ,seed_area_id)
 
-ancestors_seed=ancestors_seed(ancestors_seed.depth==7,:);
+%choose depth of seed
+ancestors_seed=ancestors_seed(ancestors_seed.depth==5,:);
 
 
 % plot_right_only = convertCharsToStrings(questdlg('Would you like to plot source region only on one hemisphere?', ...

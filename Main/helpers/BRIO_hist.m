@@ -63,7 +63,7 @@ else
     end
 end
 
-hh=figure('Position',[      2311          47         576         945]);
+hh=figure('Position',[      231          47         576         945]);
 h=bar(1:numel(summary(:,1)),y);
 hold on
 
@@ -99,6 +99,7 @@ end
 ax=gca;
 camroll(90)
 ax.YDir = 'reverse'
+set(gca,'yscale','log')
 
 yl=ylim;
 half=(yl(2)-yl(1))/80;
@@ -134,13 +135,13 @@ if labels_on==1
     
     xticklabels([])
     xticks([])
-    set(gca,'yscale','log')
+    
 %     ylim([0.00100000000000000,1000])
 %     yticklabels([-3:3])
     
 else
     
-    set(gca,'yscale','log')
+
 %     ylim([  1.00000000000000e-10,10000   ])
 %     yticklabels([-10:2:4])
     xticks([])
