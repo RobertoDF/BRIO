@@ -3,7 +3,6 @@
 
 ## Requirements
 - MATLAB (R2018a on a Windows computer was used for all testing)
-- This repository (add all folders and subfolders to your MATLAB path)
 - [The Allen Mouse Brain Atlas volume and annotations](http://data.cortexlab.net/allenCCF/) (download template and annotation volume files) 
 - [AllenBrainAPI](https://github.com/SainsburyWellcomeCentre/AllenBrainAPI) 
 - [hex2rgb](https://www.mathworks.com/matlabcentral/fileexchange/46289-rgb2hex-and-hex2rgb) 
