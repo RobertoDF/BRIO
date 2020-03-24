@@ -1,5 +1,6 @@
 # BRIO
 **BR**ain area **I**nput **O**utput: visualization and analysis tool based on the Allen Brain Atlas connectivity database. It outputs four different connectivity metrics. 
+(Input part under construction).
 
 ## Requirements
 - MATLAB (R2018a on a Windows computer was used for all testing)
