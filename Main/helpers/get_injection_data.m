@@ -29,7 +29,7 @@ end
 ancestors_seed=getAllenStructureList('ancestorsOf' ,seed_area_id)
 
 %choose depth of seed
-ancestors_seed=ancestors_seed(ancestors_seed.depth==5,:);
+ancestors_seed=ancestors_seed(ancestors_seed.depth==6,:);
 
 
 % plot_right_only = convertCharsToStrings(questdlg('Would you like to plot source region only on one hemisphere?', ...
@@ -40,4 +40,8 @@ plot_right_only='Yes';
 %get descendents
 descendents_seed=getAllenStructureList('childrenOf' ,ancestors_seed.id);
 
+if strcmp(type,'output')
 fprintf('injection located in <strong> %s </strong> \n', char(ancestors_seed.name))
+else
+    fprintf('target located in <strong> %s </strong> \n', char(ancestors_seed.name))
+end

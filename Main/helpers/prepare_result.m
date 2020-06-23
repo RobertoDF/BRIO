@@ -1,4 +1,4 @@
-function result= prepare_result(result,st,descendents_seed,injection)
+function result= prepare_result(result,st,descendents_seed,source)
 
 
 for qqq=1:numel(result)
@@ -10,7 +10,7 @@ for qqq=1:numel(result)
     
      %add  distance from injection
     result(qqq).distance=norm([result(qqq).max_voxel_x result(qqq).max_voxel_y result(qqq).max_voxel_z]...
-        - [injection.x injection.y injection.z]);    
+        - [source.x source.y source.z]);    
     %add  consolidated structure id field
     result(qqq).consolidated_structure_id =result(qqq).structure_id; 
     result(qqq).consolidated_structure_id_general =result(qqq).structure_id;

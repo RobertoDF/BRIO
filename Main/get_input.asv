@@ -15,10 +15,6 @@ av = readNPY('Z:\Roberto\allen_atlas\annotation_volume_10um_by_index.npy'); % th
 %temporary workaround!! Change manuallly line 32 in get_injection_data to have the right target structure
   [ancestor,descendents_seed,plot_right_only]=get_injection_data(st,'input',0);
 
-  % only metric available for input
-  
-  metric='normalized_projection_volume';
-
 %% INPUT
 result=table();   
 
@@ -52,34 +48,32 @@ temp_idx=[];
  
  
  temp_idx=any(temp_idx,2);
- source_coord.x=mean(inject_coor(temp_idx,1));
-  source_coord.y=mean(inject_coor(temp_idx,2));
-   source_coord.z=mean(inject_coor(temp_idx,3));
+ source_coord=injec
  
 result= prepare_result(result,st,descendents_seed,source_coord);
 
 
 %%
 
-plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
+plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,30)
+
+
+%% histogram
+
+BRIO_hist(result,0);
+
 
 %% consolidate data in main regions
 
-[consolidated_summary,result]=BRIO_consolidate(result,st);
 
-%% histogram
-
-BRIO_hist(result,0,metric);
+result_processed=BRIO_consolidate(result,st);
 
 
 %% histogram
 
-BRIO_hist(consolidated_summary,1,metric);
-
+BRIO_hist(result_processed,1);
 %% pie
 
-BRIO_pie(consolidated_summary,metric);
 
-%% relation with distance
-
-BRIO_distance(result,consolidated_summary,st,metric)
+BRIO_pie(result_processed);
+ 

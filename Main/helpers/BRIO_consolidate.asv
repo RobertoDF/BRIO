@@ -173,7 +173,7 @@ for qqq=II
         summary{nn,3}(n,1)=result(www).projection_energy_normalized;
         summary{nn,4}(n,1)=result(www).projection_density_normalized;
         summary{nn,5}(n,1)=result(www).projection_intensity_normalized;
-        end
+        
         summary{nn,6}(n,1)=result(www).normalized_projection_volume;
         n=n+1;
         

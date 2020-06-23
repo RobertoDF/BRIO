@@ -10,13 +10,6 @@ input = inputdlg({'Experiment ID','Injection Volume (mm^3)'},...
 exp_id=str2num(input{1});
 inj_vol=str2num(input{2});
 
-%%
-
-%choose metric
-list = {'projection_energy_normalized','projection_density_normalized','projection_intensity_normalized',...                   
-'normalized_projection_volume'};
-qqq = listdlg('ListString',list,'SelectionMode','single','PromptString','Connectivity metric');
-metric=list{qqq};
 
 %% Check selected seed structure
 
@@ -93,7 +86,7 @@ result= prepare_result(result,st,descendents_seed,injection);
 fprintf('Data ready')
 %%
 
-plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
+plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only, "normalized_projection_volume")
 
 % save as png but vectorized! use native matlab save
 
