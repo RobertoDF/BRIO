@@ -2,7 +2,8 @@ function get_input(input_table)
 
 % go here:
 % http://connectivity.brain-map.org/
-% select a target structure and then download the results as CSV
+% select a target structure and then download the results as CSV. 
+%Select right hemisphere!!
 % import projection search table
 % rename as: input_table
 
