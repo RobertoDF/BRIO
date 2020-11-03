@@ -7,9 +7,6 @@ result = table2struct( result);
 
 colors=[];
 
-%delete if projection energy less than 10^-2
-%
- result(log10([result.projection_energy_normalized])<-6)=[];
 
 for qqq=1:numel(result)
     
@@ -97,12 +94,15 @@ leg.Box='Off';
 
 
 xticks([0:200:1000])
-% yticks([-10:2:10])
+
+
+ylim([-6 Inf])
 
 
 
 %%
-
+try
+    
 figure('Position',[      231          50         900         900]);
 
 for q=1:4
@@ -190,9 +190,13 @@ leg.Box='Off';
 
 
 xticks([0:200:1000])
-% yticks([-10:2:10])
+
+ylim([-6 Inf])
 
 end
+catch
+    close
 
+end
 
 
