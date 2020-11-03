@@ -1,11 +1,12 @@
-function BRIO_input(projectionsearchresults)
+function BRIO_input(input_table)
 
 % go here:
 % http://connectivity.brain-map.org/
 % select a target structure and then download the results as CSV. 
-% Select only right hemisphere!!
+% Select right hemisphere!!
 % import projection search table
-% 
+% rename as: input_table
+
 
 % download data from ABA
 st=getAllenStructureList();
@@ -22,7 +23,7 @@ av = readNPY('E:\Roberto\allen_atlas\annotation_volume_10um_by_index.npy'); % th
 %% INPUT
 result=table();   
 
-inject_coor_temp=table2array(projectionsearchresults(:,15));
+inject_coor_temp=table2array(input_table(:,15));
 
 for ii=1:numel(inject_coor_temp)
     a=inject_coor_temp(ii);
@@ -30,15 +31,15 @@ for ii=1:numel(inject_coor_temp)
 end
 
 
-target_volume=table2array(projectionsearchresults(:,12));%volume of projection signal in target structure in mm^3
-inject_volume=table2array(projectionsearchresults(:,8));
+target_volume=table2array(input_table(:,12));%volume of projection signal in target structure in mm^3
+inject_volume=table2array(input_table(:,8));
 
 
 result.max_voxel_x=inject_coor(:,1);
 result.max_voxel_y=inject_coor(:,2);
 result.max_voxel_z=inject_coor(:,3);
-result.hex=table2array(projectionsearchresults(:,13));
-result.structure_id=table2array(projectionsearchresultsprojectionsearchresults(:,4));
+result.hex=table2array(input_table(:,13));
+result.structure_id=table2array(input_table(:,4));
 result.normalized_projection_volume=(target_volume./inject_volume);
 
 

@@ -50,4 +50,4 @@ for qqq=1:numel(result)
 end
 
 result([result.structure_id]==997)=[];
-fprintf('\n DONE preparing results!')
+fprintf('\n DONE preparing results! \n')

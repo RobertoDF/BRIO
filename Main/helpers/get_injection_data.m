@@ -13,8 +13,7 @@ if strcmp(type,'output')
     seed_area_id= st.id(st.id==Id_injection);
     
 else
-    
-    
+       
     % select among at least depth 9 structures
     st = sortrows(st, 'safe_name');
     idx=listdlg('PromptString','Select a structure to plot:', ...
@@ -29,7 +28,7 @@ end
 ancestors_seed=getAllenStructureList('ancestorsOf' ,seed_area_id)
 
 %choose depth of seed
-ancestors_seed=ancestors_seed(ancestors_seed.depth==6,:);
+ancestors_seed=ancestors_seed(ancestors_seed.depth==8,:);
 
 
 % plot_right_only = convertCharsToStrings(questdlg('Would you like to plot source region only on one hemisphere?', ...
