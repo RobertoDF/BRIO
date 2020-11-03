@@ -38,7 +38,7 @@ result.max_voxel_x=inject_coor(:,1);
 result.max_voxel_y=inject_coor(:,2);
 result.max_voxel_z=inject_coor(:,3);
 result.hex=table2array(projectionsearchresults(:,13));
-result.structure_id=table2array(projectionsearchresultsprojectionsearchresults(:,4));
+result.structure_id=table2array(projectionsearchresults(:,4));
 result.normalized_projection_volume=(target_volume./inject_volume);
 
 
@@ -46,7 +46,7 @@ result = table2struct( result);
 
 temp_idx=[];
 for q=1:numel(descendents_seed(:,1))
-    temp=table2array(input_table(:,5))== char(table2array(descendents_seed(q,4)));
+    temp=table2array(projectionsearchresults(:,5))== char(table2array(descendents_seed(q,4)));
     temp_idx=[temp_idx temp];
 end
 
