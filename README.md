@@ -1,5 +1,5 @@
 # BRIO
-**BR**ain area **I**nput **O**utput: visualization and analysis tool based on the Allen Brain Atlas connectivity database. It outputs four different connectivity metrics. 
+**BR**ain area **I**nput **O**utput: visualization and analysis tool based on the Allen Brain Atlas connectivity database. Output provides 4 different metrics: projection_energy_normalized,projection_density_normalized,projection_intensity_normalized or normalized_projection_volume (for more info: https://allensdk.readthedocs.io/en/latest/unionizes.html). Input provides only normalized_projection_volume.
 
 ## Requirements
 - MATLAB (R2018a on a Windows computer was used for all testing)
