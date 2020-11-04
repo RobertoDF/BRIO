@@ -39,7 +39,7 @@ if exist('ancestors')
     if sum(ancestors)>1
         fprintf('Multiple injections in different areas!')
     else
-        fprintf('Multiple injections in same area \n')
+       
     end
 end
 
