@@ -96,8 +96,6 @@ leg.Box='Off';
 xticks([0:200:1000])
 
 
-ylim([-6 Inf])
-
 
 
 %%
@@ -191,7 +189,6 @@ leg.Box='Off';
 
 xticks([0:200:1000])
 
-ylim([-6 Inf])
 
 end
 catch

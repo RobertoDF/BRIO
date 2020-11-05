@@ -1,6 +1,7 @@
 function BRIO_hist(summary,labels_on,metric)
 
 colors=[];
+
 %ugly way to understand input, to be changed
 if isstruct(summary)==1
     summary = struct2table(summary);
@@ -22,25 +23,24 @@ if isstruct(summary)==1
     for qqq=1:numel(summary)
         
         
-        
         colors=vertcat(colors, hex2rgb(summary(qqq).hex));
         
     end
     
 else
- 
+    
     switch metric
         case 'projection_energy_normalized'
-             summary = sortrows(summary, [7]);
+            summary = sortrows(summary, [7]);
             y=[summary{:,7}];
         case 'projection_density_normalized'
-             summary = sortrows(summary, [8]);
+            summary = sortrows(summary, [8]);
             y=[summary{:,8}];
         case 'projection_intensity_normalized'
-             summary = sortrows(summary, [9]);
+            summary = sortrows(summary, [9]);
             y=[summary{:,9}];
         case 'normalized_projection_volume'
-             summary = sortrows(summary, [10]);
+            summary = sortrows(summary, [10]);
             y=[summary{:,10}];
     end
     
@@ -136,14 +136,14 @@ if labels_on==1
     xticklabels([])
     xticks([])
     
-%     ylim([0.00100000000000000,1000])
-%     yticklabels([-3:3])
+    %     ylim([0.00100000000000000,1000])
+    %     yticklabels([-3:3])
     
 else
     
-
-%     ylim([  1.00000000000000e-10,10000   ])
-%     yticklabels([-10:2:4])
+    
+    %     ylim([  1.00000000000000e-10,10000   ])
+    %     yticklabels([-10:2:4])
     xticks([])
     
 end

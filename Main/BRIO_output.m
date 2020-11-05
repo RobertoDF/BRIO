@@ -96,12 +96,16 @@ plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,me
 % save as png but vectorized! use native matlab save
 
 %% consolidate data in main regions
+%threshold on normalized projection energy to exclude weak projections that
+%would bias the mean
 
-[consolidated_summary,result]=BRIO_consolidate(result,st);
+threshold=0.1;
+
+[consolidated_summary,result_cleaned]=BRIO_consolidate(result,st,threshold);
 
 %% histogram
 
-BRIO_hist(result,0,metric);
+BRIO_hist(result_cleaned,0,metric);
 
 
 %% histogram
@@ -110,8 +114,9 @@ BRIO_hist(consolidated_summary,1,metric);
 
 %% pie
 
-BRIO_pie(consolidated_summary,metric);
+threshold=0.1;
+BRIO_pie(consolidated_summary,metric,threshold);
 
 %% relation with distance
 
-BRIO_distance(result,consolidated_summary,st,metric)
+BRIO_distance(result_cleaned,consolidated_summary,st,metric)

@@ -1,8 +1,10 @@
-function [summary,result]=BRIO_consolidate(result,st)
-% in result_processed structure_id is
+function [summary,result]=BRIO_consolidate(result,st,threshold)
 
-% reassign structure_id
+% reassign structure_id to hgher level structures and delete imprecise
+% annottations
+
 fprintf('\n')
+
 for qqq=1:numel(result)
     
     temp=getAllenStructureList('ancestorsOf' ,result(qqq).structure_id);
@@ -158,9 +160,20 @@ result([result.structure_id]==0)=[];
 
 %create new field with annotations divided by group
 
+
+
+
+if isfield(result,"projection_energy_normalized")==1 %check if input or output:input doesn't have projection_energy_normalized
+ 
+    result=result([result.projection_energy_normalized]>threshold);
+   
+end
+
 [II,I ] = unique([result.consolidated_structure_id]);
 
 nn=1;
+
+
 for qqq=II
     
     ind=find([result.consolidated_structure_id]==qqq);
@@ -169,10 +182,11 @@ for qqq=II
     n=1;
     
     for www=ind
-        if isfield(result,"projection_energy_normalized")==1
-        summary{nn,3}(n,1)=result(www).projection_energy_normalized;
-        summary{nn,4}(n,1)=result(www).projection_density_normalized;
-        summary{nn,5}(n,1)=result(www).projection_intensity_normalized;
+        
+        if isfield(result,"projection_energy_normalized")==1 %check if input or output:input doesn't have projection_energy_normalized
+            summary{nn,3}(n,1)=result(www).projection_energy_normalized;
+            summary{nn,4}(n,1)=result(www).projection_density_normalized;
+            summary{nn,5}(n,1)=result(www).projection_intensity_normalized;
         end
         summary{nn,6}(n,1)=result(www).normalized_projection_volume;
         n=n+1;
@@ -200,10 +214,5 @@ for qqq=1:numel(summary(:,1))
     summary{qqq,14}=st.safe_name(st.id== summary{qqq,2});   %name
     
 end
-
-
-
-
-
 
 fprintf('\n DONE consolidating!')
