@@ -10,8 +10,8 @@ input = inputdlg({'Experiment ID','Injection Volume (mm^3)'},...
 exp_id=str2num(input{1});
 inj_vol=str2num(input{2});
 
-list = {'projection_energy_normalized','projection_density_normalized','projection_intensity_normalized',...                   
-'normalized_projection_volume'};
+list = {'projection_energy_normalized','projection_density_normalized','projection_intensity_normalized',...
+    'normalized_projection_volume'};
 [idx,~] = listdlg('PromptString',"Metric to use",'ListString',list,'ListSize',[300,150]);
 
 metric=char(list(idx))
@@ -39,7 +39,7 @@ if exist('ancestors')
     if sum(ancestors)>1
         fprintf('Multiple injections in different areas!')
     else
-       
+        
     end
 end
 

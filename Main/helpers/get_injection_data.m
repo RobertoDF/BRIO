@@ -13,7 +13,7 @@ if strcmp(type,'output')
     seed_area_id= st.id(st.id==Id_injection);
     
 else
-       
+    
     % select among at least depth 9 structures
     st = sortrows(st, 'safe_name');
     idx=listdlg('PromptString','Select a structure to plot:', ...
@@ -40,7 +40,10 @@ plot_right_only='Yes';
 descendents_seed=getAllenStructureList('childrenOf' ,ancestors_seed.id);
 
 if strcmp(type,'output')
-fprintf('injection located in <strong> %s </strong> \n', char(ancestors_seed.name))
+    fprintf('injection located in <strong> %s </strong> \n', char(ancestors_seed.name))
 else
-    fprintf('target located in <strong> %s </strong> \n', char(ancestors_seed.name))
+    for q=1:numel(ancestors_seed(:,1))
+        
+        fprintf('target located in <strong> %s </strong> \n', char(ancestors_seed.name(q)))
+    end
 end

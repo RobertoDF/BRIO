@@ -43,6 +43,7 @@ result.hex=table2array(projectionsearchresults(:,13));
 result.structure_id=table2array(projectionsearchresults(:,4));
 result.normalized_projection_volume=(target_volume./inject_volume);
 
+result=result([result.normalized_projection_volume]>0.001,:);
 
 result = table2struct( result);
 
@@ -66,8 +67,9 @@ result= prepare_result(result,st,descendents_seed,source_coord);
 plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
 
 %% consolidate data in main regions
-
-threshold=1;
+% threshold is not use in this case, we already cleaned based on normalized
+% projection volume
+threshold=0.1;
 
 [consolidated_summary,result]=BRIO_consolidate(result,st,threshold);
 
