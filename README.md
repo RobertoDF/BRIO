@@ -5,6 +5,8 @@ Output provides 4 different metrics: projection_energy_normalized, projection_de
 
 Input provides only normalized_projection_volume.
 
+BRIO_input.m provides inputs of an area while BRIO_output.m provides the outputs. 
+
 ## Requirements
 - MATLAB (R2018a on a Windows computer was used for all testing)
 - [The Allen Mouse Brain Atlas volume and annotations](http://data.cortexlab.net/allenCCF/) (download template and annotation volume files) 
