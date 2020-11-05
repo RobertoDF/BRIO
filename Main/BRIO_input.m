@@ -62,9 +62,6 @@ source_coord.z=mean(inject_coor(temp_idx,3));
 result= prepare_result(result,st,descendents_seed,source_coord);
 
 
-%%
-
-plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
 
 %% consolidate data in main regions
 % threshold is not use in this case, we already cleaned based on normalized
@@ -72,6 +69,11 @@ plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,me
 threshold=0.1;
 
 [consolidated_summary,result]=BRIO_consolidate(result,st,threshold);
+
+%%
+%first figure plots each entry of result, second figure plots a circle for
+%each area using mean()
+plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
 
 %% histogram
 

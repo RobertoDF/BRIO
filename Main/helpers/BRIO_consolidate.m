@@ -3,6 +3,9 @@ function [summary,result]=BRIO_consolidate(result,st,threshold)
 % reassign structure_id to hgher level structures and delete imprecise
 % annottations
 
+
+%consolidated_structure_id_general is higher level 
+
 fprintf('\n')
 
 for qqq=1:numel(result)

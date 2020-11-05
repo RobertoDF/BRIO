@@ -89,11 +89,6 @@ result= prepare_result(result,st,descendents_seed,injection);
 
 % https://alleninstitute.github.io/AllenSDK/unionizes.html
 fprintf('Data ready')
-%%
-
-plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
-
-% save as png but vectorized! use native matlab save
 
 %% consolidate data in main regions
 %threshold on normalized projection energy to exclude weak projections that
@@ -102,6 +97,14 @@ plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,me
 threshold=0.1;
 
 [consolidated_summary,result_cleaned]=BRIO_consolidate(result,st,threshold);
+
+%%
+%first figure plots each entry of result, second figure plots a circle for
+%each area using mean()
+
+plot_3d_brain_with_connectivity(result,descendents_seed,av,st,plot_right_only,metric)
+
+% save as png but vectorized! use native matlab save
 
 %% histogram
 
